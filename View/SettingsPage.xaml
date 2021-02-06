@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="FileCompare_Reforged.View.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:FileCompare_Reforged.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="191"
+             d:DesignWidth="540">
+    <!---->
+    <UserControl.Resources>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius"
+                    Value="3" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background"
+                    Value="White" />
+            <Setter Property="BorderBrush"
+                    Value="#FFDDDCDC" />
+            <Setter Property="BorderThickness"
+                    Value="0.6" />
+        </Style>
+    </UserControl.Resources>
+
+    <!--<UserControl.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FFC3C1C1"
+                          Offset="1" />
+            <GradientStop Color="White"
+                          Offset="0" />
+            <GradientStop Color="#FFDFDEDE"
+                          Offset="0.502" />
+        </RadialGradientBrush>
+    </UserControl.Background>-->
+
+    <UserControl.DataContext>
+        <vm:SettignsPageVM></vm:SettignsPageVM>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <!-- <ProgressBar Grid.Row="0"
+                     HorizontalAlignment="Left"
+                     Height="10"
+                     Margin="10,145,0,0"
+                     VerticalAlignment="Top"
+                     Width="447"
+                     Value="{Binding ProgressValue}"
+                     BorderThickness="0"
+                     Foreground="#FF3B99FC"
+                     Background="#FFDBDBDB" >
+                <ProgressBar.Effect>
+                    <DropShadowEffect Direction="260"
+                                  ShadowDepth="1"
+                                  RenderingBias="Quality"
+                                  BlurRadius="0"
+                                  Color="#FFDDDCDC" />
+                </ProgressBar.Effect>
+            </ProgressBar> -->
+        </Grid>
+        <Button Grid.Row="0"
+                Content="Открыть папку с файлом"
+                HorizontalAlignment="Left"
+                Margin="10,148,0,0"
+                VerticalAlignment="Top"
+                Width="151"
+                Command="{Binding ApplyCommand}"
+                FontFamily="{StaticResource 'San Francisco'}"
+                Background="White"
+                Height="22">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius"
+                            Value="3" />
+                </Style>
+            </Button.Resources>
+            <Button.Effect>
+                <DropShadowEffect Direction="260"
+                                  ShadowDepth="1"
+                                  RenderingBias="Quality"
+                                  BlurRadius="0"
+                                  Color="#FFDDDCDC" />
+            </Button.Effect>
+        </Button>
+        <CheckBox Grid.Row="0"
+                  Content="Автозапуск"
+                  HorizontalAlignment="Left"
+                  Margin="10,85,0,0"
+                  VerticalAlignment="Top"
+                  BorderBrush="#FFDADADA"
+                  FontFamily="{StaticResource 'San Francisco'}"
+                  IsChecked="{Binding AutoLaunch}">
+
+            <CheckBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius"
+                            Value="2" />
+                </Style>
+            </CheckBox.Resources>
+        </CheckBox>
+        <CheckBox Grid.Row="0"
+            Content="Автоматически проверять файлы"
+            HorizontalAlignment="Left"
+            Margin="10,105,0,0"
+            VerticalAlignment="Top"
+            BorderBrush="#FFDADADA"
+                  IsChecked="{Binding AutoDownload}">
+
+            <CheckBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius"
+                        Value="2" />
+                </Style>
+            </CheckBox.Resources>
+            <CheckBox.FontFamily>
+                <StaticResource ResourceKey="San Francisco"/>
+            </CheckBox.FontFamily>
+        </CheckBox>
+        <Button Grid.Row="0"
+            Content="Открыть файл"
+            HorizontalAlignment="Left"
+            Margin="354,148,0,0"
+            VerticalAlignment="Top"
+            Width="151"
+            Command="{Binding OpenFileCommand}"
+            Background="White"
+            Height="22"
+            Visibility="{Binding ButtonVisibility}">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius"
+                        Value="3" />
+                </Style>
+            </Button.Resources>
+            <Button.FontFamily>
+                <StaticResource ResourceKey="San Francisco"/>
+            </Button.FontFamily>
+            <Button.Effect>
+                <DropShadowEffect Direction="260"
+                    ShadowDepth="1"
+                    RenderingBias="Quality"
+                    BlurRadius="0"
+                    Color="#FFDDDCDC" />
+            </Button.Effect>
+        </Button>
+    </Grid>
+</UserControl>

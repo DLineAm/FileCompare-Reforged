@@ -1,0 +1,146 @@
+﻿<Window x:Class="FileCompare_Reforged.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileCompare_Reforged"
+        xmlns:view="clr-namespace:FileCompare_Reforged.View"
+        xmlns:vm="clr-namespace:FileCompare_Reforged.ViewModel"
+        mc:Ignorable="d"
+        Title="FileCompare"
+        Height="256.971"
+        Width="550.268"
+        Background="#FFECECEC"
+        ResizeMode="CanMinimize">
+
+    <Window.DataContext>
+        <vm:MainWindowVM></vm:MainWindowVM>
+    </Window.DataContext>
+
+    <Grid>
+
+        <TabControl Name="TabControl"
+            Background="#FFE3E3E3"
+                    BorderBrush="#FFDADADA"
+                    BorderThickness="1"
+                    Margin="10,0,10,10"
+                    >
+            
+            
+            
+            <!--Style-->
+            <TabControl.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius"
+                            Value="5" />
+                </Style>
+                <Style TargetType="TabItem">
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border"
+                                        Margin="2,0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      ContentSource="Header"
+                                                      Margin="10,2" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected"
+                                             Value="True">
+                                        <Trigger.Setters>
+                                            <Setter TargetName="Border"
+                                                    Property="Background">
+                                                <Setter.Value>
+                                                    <LinearGradientBrush StartPoint="0,0"
+                                                                         EndPoint="0,1">
+                                                        <GradientStop Color="#FF63A2FC"
+                                                                      Offset="0" />
+                                                        <GradientStop Color="#FF3088F6"
+                                                                      Offset="0.5" />
+                                                        <GradientStop Color="#FF1C66EB"
+                                                                      Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Foreground"
+                                                    Value="White" />
+                                            <Setter Property="BorderBrush"
+                                                    Value="#FF356FEC" />
+                                            <Setter Property="BorderThickness"
+                                                    Value="4,0,0,0" />
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected"
+                                             Value="False">
+                                        <Trigger.Setters>
+                                            <Setter TargetName="Border"
+                                                    Property="Background">
+                                                <Setter.Value>
+                                                    <LinearGradientBrush StartPoint="0,0"
+                                                                         EndPoint="0,1">
+                                                        <GradientStop Color="#FFFFFEFE"
+                                                                      Offset="0" />
+                                                        <GradientStop Color="White"
+                                                                      Offset="0.5" />
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="BorderBrush"
+                                                    Value="#FFC4C4C4" />
+                                            <Setter Property="BorderThickness"
+                                                    Value="0.6" />
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <!--Main-->
+            <TabItem Name="MainTab"
+                Header="Main"
+                     Padding="0"
+                     Margin="197,10,-199,-10"
+                     TextOptions.TextFormattingMode="Ideal"
+                     FontFamily="{StaticResource San Francisco}">
+                <TabItem.Effect>
+                    <DropShadowEffect Direction="225"
+                                      ShadowDepth="1"
+                                      RenderingBias="Quality"
+                                      BlurRadius="0"
+                                      Color="#FFDDDCDC" />
+                </TabItem.Effect>
+                <TabItem.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="3,0,0,3" />
+                    </Style>
+                    
+                </TabItem.Resources>
+            </TabItem>
+            <!--Settings-->
+            <TabItem Name="SettingsTab"
+                Header="Settings"
+                     Margin="195,10,-197,-10"
+                     FontFamily="{StaticResource San Francisco}">
+                <TabItem.Effect>
+                    <DropShadowEffect Direction="315"
+                                      ShadowDepth="1"
+                                      RenderingBias="Quality"
+                                      BlurRadius="0"
+                                      Color="#FFDDDCDC" />
+                </TabItem.Effect>
+                <TabItem.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="0,3,3,0" />
+                    </Style>
+                </TabItem.Resources>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
