@@ -13,11 +13,12 @@ using System.Windows.Media.Imaging;
 
 namespace FileCompare_Reforged
 {
-    public class MainPageVM : BindableBase, IObserver<FileResult>
+    public class MainPageVM : BindableBase
     {
         private static Properties.Settings settings = new Settings();
 
         private ImageSource _imageSource;
+
         public ImageSource ImageSource
         {
             get => _imageSource;
@@ -27,6 +28,7 @@ namespace FileCompare_Reforged
         private NotifyIcon notifyIcon;
 
         private string _infoText;
+
         public string InfoText
         {
             get => _infoText;
@@ -36,13 +38,12 @@ namespace FileCompare_Reforged
 
 
         private DelegateCommand _openFileCommand;
+
         public DelegateCommand OpenFileCommand =>
-            _openFileCommand ??= new DelegateCommand(() =>
-            {
-                Process.Start(MainWindowVM.FilePath);
-            });
+            _openFileCommand ??= new DelegateCommand(() => { Process.Start(MainWindowVM.AltFilePath); });
 
         private Visibility _buttonVisibility;
+
         public Visibility ButtonVisibility
         {
             get => _buttonVisibility;
@@ -107,6 +108,9 @@ namespace FileCompare_Reforged
                     case FileResult.FileHandlerResult.WithFindWord:
                         ButtonVisibility = Visibility.Visible;
                         break;
+                    case FileResult.FileHandlerResult.WithChanges:
+                        ButtonVisibility = Visibility.Visible;
+                        break;
                     default:
                         ButtonVisibility = Visibility.Hidden;
                         break;
@@ -119,30 +123,13 @@ namespace FileCompare_Reforged
             notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             notifyIcon.BalloonTipClosed += (s, e) => notifyIcon.Visible = false;
-            notifyIcon.BalloonTipClicked += (s, e) =>  Process.Start(MainWindowVM.FilePath);
+            notifyIcon.BalloonTipClicked += (s, e) => Process.Start(MainWindowVM.AltFilePath);
         }
 
         private void ShowNotification(string title, string message)
         {
             notifyIcon.Visible = true;
             notifyIcon.ShowBalloonTip(3000, title, message, ToolTipIcon.Info);
-        }
-
-        public void OnNext(FileResult value)
-        {
-            var result = value.Result;
-            Result = result;
-            ResultHandler(result);
-        }
-
-        public void OnError(Exception error)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnCompleted()
-        {
-            throw new NotImplementedException();
         }
     }
 }

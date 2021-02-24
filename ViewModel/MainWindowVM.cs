@@ -29,7 +29,7 @@ namespace FileCompare_Reforged.ViewModel
         private static Properties.Settings settings = new Properties.Settings();
 
         public static string FilePath => settings.FilePath + @"\" + settings.FileName + settings.FileType;
-        public string AltFilePath => settings.FilePath + @"\" + settings.FileName + "Alt" + settings.FileType;
+        public static string AltFilePath => settings.FilePath + @"\" + settings.FileName + "Alt" + settings.FileType;
 
         private string _linkPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\Filecompare.lnk";
 
